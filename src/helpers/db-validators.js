@@ -1,5 +1,6 @@
 import Role from '../roles/role.model.js'
 import User from '../users/user.model.js'
+import Publication from '../publications/publication.model.js'
 
 export const isRoleValid = async (role = '') =>{
     const existRole = await  Role.findOne({role});
@@ -18,6 +19,13 @@ export const existsMail = async (mail= '') =>{
 export const existUserById = async (id = '') =>{
     const existsUser = await User.findById (id);
     if(!existsUser) {
-        throw new Error(`The ID: ${mail} not exists`);
+        throw new Error(`The ID: ${id} not exists`);
+    }
+}
+
+export const existPublicationById = async (id = '') =>{
+    const existPublication = await Publication.findById(id);
+    if(!existPublication){
+        throw new Error(`The ID: ${id} not exists`);
     }
 }

@@ -1,0 +1,61 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "publicationCollections",
+    "dateExported": "2024-02-29T09:05:52.812Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "bb7e7b62-8f31-4772-b3af-b054cd873102",
+            "colId": "02f1df8a-855e-4023-a533-00746ebc5cad",
+            "containerId": "",
+            "name": "publicationPost",
+            "url": "http://localhost:8080/opinionApi/v1/publications",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-02-29T06:04:09.969Z",
+            "modified": "2024-02-29T08:37:23.306Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"title\": \"titulo1000\",\n    \"category\": \"contenido1000\",\n    \"content\": \"asdaasdasdasdasdasdasd\",\n    \"userName\": \"Jorge Canas\"\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "e87fc39a-9b65-43a6-983f-0121ce3abf96",
+            "colId": "02f1df8a-855e-4023-a533-00746ebc5cad",
+            "containerId": "",
+            "name": "publicationPut",
+            "url": "http://localhost:8080/opinionApi/v1/publications/65e02eb83c2bace5e3d36a83",
+            "method": "PUT",
+            "sortNum": 20000,
+            "created": "2024-02-29T07:48:37.788Z",
+            "modified": "2024-02-29T07:55:40.857Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"prueba del put\",\n  \"category\": \"informatica\",\n  \"content\": \"comprobando si funciona\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "e93abffd-ff12-48e7-a539-caa48a9c6d13",
+            "colId": "02f1df8a-855e-4023-a533-00746ebc5cad",
+            "containerId": "",
+            "name": "publicationDelete",
+            "url": "http://localhost:8080/opinionApi/v1/publications/Jorge Canas",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2024-02-29T08:37:46.308Z",
+            "modified": "2024-02-29T08:58:03.035Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
