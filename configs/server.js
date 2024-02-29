@@ -6,12 +6,14 @@ import helmet from 'helmet'
 import morgan from 'morgan'
 import { dbConnection } from './mongo.js'
 import userRoutes from '../src/users/user.router.js'
+import publicationRoutes from '../src/publications/publication.router.js'
 
 class Server {
     constructor() {
         this.app = express();
         this.port = process.env.PORT;
-        this.userPath = '/opinionApi/v1/users'
+        this.userPath = '/opinionApi/v1/users',
+        this.publicationPath =  '/opinionApi/v1/publications'
 
         this.middlewares();
         this.connectDB();
@@ -34,6 +36,7 @@ class Server {
 
     routes(){
         this.app.use(this.userPath, userRoutes);
+        this.app.use(this.publicationPath, publicationRoutes);
     }
 
     listen() {

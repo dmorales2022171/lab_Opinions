@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
 import {
-    userDelete,
     userPost, 
     userPut
 } from "./user.controller.js";

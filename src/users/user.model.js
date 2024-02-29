@@ -17,7 +17,7 @@ const userSchema = mongoose.Schema({
         type: String,
         default: "USER_ROLE"
     },
-    state: {
+    status: {
         type: Boolean,
         default: true
     }
