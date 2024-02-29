@@ -3,8 +3,8 @@ import bcryptjs from "bcryptjs";
 import User from './user.model.js';
 
 export const userPost = async (req, res) =>{
-    const {name, mail, password} = req.body;
-    const user = new User({name, mail, password});
+    const {userName, mail, password} = req.body;
+    const user = new User({userName, mail, password});
 
     const salt = bcryptjs.genSaltSync();
     user.password = bcryptjs.hashSync(password, salt);
@@ -18,7 +18,7 @@ export const userPost = async (req, res) =>{
 
 export const userPut = async(req, res = response)=>{
     const { id } = req.params;
-    const {_id, password, mail, ...resto} = req.body;
+    const {_id, password, ...resto} = req.body;
     
     if(password){
         const salt = bcryptjs.genSaltSync();

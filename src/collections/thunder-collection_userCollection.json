@@ -1,44 +1,44 @@
 {
     "client": "Thunder Client",
     "collectionName": "userCollection",
-    "dateExported": "2024-02-28T23:26:10.173Z",
+    "dateExported": "2024-02-29T04:43:08.845Z",
     "version": "1.1",
     "folders": [],
     "requests": [
         {
-            "_id": "87a3508e-04b9-4594-a970-c06f7d563a34",
-            "colId": "f97f661b-ecfd-4054-a2e4-1cf0aaf70b64",
+            "_id": "e06c46eb-20f0-4d8d-a28b-c3be9fa7342b",
+            "colId": "37347c02-ebbf-4b66-af60-874074b54fe9",
             "containerId": "",
             "name": "userPost",
             "url": "http://localhost:8080/opinionApi/v1/users",
             "method": "POST",
             "sortNum": 10000,
-            "created": "2024-02-28T22:40:45.790Z",
-            "modified": "2024-02-28T23:00:57.241Z",
+            "created": "2024-02-29T01:37:03.129Z",
+            "modified": "2024-02-29T04:05:31.766Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\": \"dmorales\",\n  \"mail\": \"dmorales-2022171@kinal.edu.gt\",\n  \"password\": \"123456\"\n}",
+                "raw": "{\n  \"userName\": \"diego.m1923\",\n  \"mail\": \"dmorales-2022171@kinal.edu.gt\",\n  \"password\": \"123456\"\n}",
                 "form": []
             },
             "tests": []
         },
         {
-            "_id": "1cc53b68-8931-4916-bd72-805c6108bfab",
-            "colId": "f97f661b-ecfd-4054-a2e4-1cf0aaf70b64",
+            "_id": "57a0b877-649a-4a20-bc19-e01306177faa",
+            "colId": "37347c02-ebbf-4b66-af60-874074b54fe9",
             "containerId": "",
             "name": "userPut",
-            "url": "http://localhost:8080/opinionApi/v1/users/65dfbafea1683c81db1b4116",
+            "url": "http://localhost:8080/opinionApi/v1/users/65e0028b353323403423d173",
             "method": "PUT",
             "sortNum": 20000,
-            "created": "2024-02-28T23:14:23.762Z",
-            "modified": "2024-02-28T23:17:35.911Z",
+            "created": "2024-02-29T01:37:03.131Z",
+            "modified": "2024-02-29T04:06:39.697Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\": \"Carlos Juarez\",\n  \"mail\": \"carlos@kinal.edu.gt\",\n  \"password\": \"123456\"\n}",
+                "raw": "{\n  \"userName\": \"Jorge Canas\",\n  \"mail\": \"jorge@kinal.edu.gt\",\n  \"password\": \"123456\"\n}",
                 "form": []
             },
             "tests": []
