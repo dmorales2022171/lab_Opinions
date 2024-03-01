@@ -42,21 +42,17 @@ export const publicationPut = async (req, res = response) => {
     });
 }
 
-// Controlador de Publicaciones
-// Controlador de Publicaciones
 export const publicationDelete = async (req, res = response) => {
     const { id } = req.params;
-    const { _id: userId } = req.user; // Obtener el ID del usuario del token JWT
+    const { _id: userId } = req.user;
 
     try {
-        // Verificar si la publicación existe y si el usuario es el autor
         const publication = await Publication.findOneAndUpdate(
-            { _id: id, author: userId }, // Solo actualizar si el usuario es el autor de la publicación
-            { status: false }, // Cambiar el estado de la publicación a false
-            { new: true } // Devolver la publicación actualizada
+            { _id: id, author: userId },
+            { status: false }, 
+            { new: true }gi 
         );
 
-        // Verificar si la publicación no existe o el usuario no es el autor
         if (!publication) {
             return res.status(403).json({ msg: 'You are not authorized to delete this publication' });
         }
