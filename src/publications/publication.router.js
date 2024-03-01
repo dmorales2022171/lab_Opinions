@@ -3,6 +3,7 @@ import { check } from "express-validator";
 import { publicationDelete, publicationPost, publicationPut } from "../publications/publication.controller.js";
 import { validateFilds } from "../middlewares/validate-filds.js";
 import { existPublicationById } from "../helpers/db-validators.js";
+import { validateJWT } from "../middlewares/validate-jwt.js";
 
 const router = Router();
 
@@ -20,7 +21,8 @@ router.post(
 
 router.put(
     "/:id",
-    [
+    [   
+        
         check("id", "the id is not valid").isMongoId(),
         check("id").custom(existPublicationById),
         validateFilds
@@ -28,9 +30,12 @@ router.put(
     publicationPut
 )
 
-router.delete('/:userName',
+router.delete(
+    '/:id',
     [
-        check("userName", "the author is required").not().isEmpty(),
+        validateJWT,
+        check("id", "the id is not valid").isMongoId(),
+        check("id").custom(existPublicationById),
         validateFilds
     ],
     publicationDelete

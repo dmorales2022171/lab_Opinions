@@ -27,11 +27,9 @@ router.post(
 
     userPost
 );
-
 router.put(
     "/:id",
     [
-        validateJWT,
         check("id", "it is not valid id").isMongoId(),
         check("id").custom(existUserById),
         check("oldPassword", "The old password is required").not().isEmpty(),

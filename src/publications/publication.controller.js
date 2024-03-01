@@ -16,14 +16,15 @@ export const publicationPost = async (req, res) => {
     const publication = new Publication({
         ...data,
         author: user._id,
-        userName: user.userName
+        userName: user.userName,
     });
 
     await publication.save();
 
     res.status(200).json({
         publication,
-        userName: user.userName
+        userName: user.userName,
+        mail: user.mail
     });
 }
 
@@ -41,26 +42,32 @@ export const publicationPut = async (req, res = response) => {
     });
 }
 
+// Controlador de Publicaciones
+// Controlador de Publicaciones
 export const publicationDelete = async (req, res = response) => {
-    const { userName } = req.params; 
+    const { id } = req.params;
+    const { _id: userId } = req.user; // Obtener el ID del usuario del token JWT
 
     try {
-        const user = await User.findOne({ userName });
-        if (!user) {
-            return res.status(404).json({ msg: 'User not found' });
-        }
-
-        const updatedPublications = await Publication.updateMany(
-            { author: user._id }, 
-            { status: false } 
+        // Verificar si la publicación existe y si el usuario es el autor
+        const publication = await Publication.findOneAndUpdate(
+            { _id: id, author: userId }, // Solo actualizar si el usuario es el autor de la publicación
+            { status: false }, // Cambiar el estado de la publicación a false
+            { new: true } // Devolver la publicación actualizada
         );
 
-        res.status(200).json({
-            msg: 'Publications deleted',
-            publicationsUpdated: updatedPublications.nModified
-        });
+        // Verificar si la publicación no existe o el usuario no es el autor
+        if (!publication) {
+            return res.status(403).json({ msg: 'You are not authorized to delete this publication' });
+        }
+
+        res.status(200).json({ msg: 'Publication deleted', publication });
     } catch (error) {
         console.error(error);
         res.status(500).json({ msg: 'Server error' });
     }
 };
+
+
+
+
