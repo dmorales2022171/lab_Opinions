@@ -50,10 +50,10 @@ export const publicationDelete = async (req, res = response) => {
         const publication = await Publication.findOneAndUpdate(
             { _id: id, author: userId },
             { status: false }, 
-            { new: true }gi 
+            { new: true }
         );
 
-        if (!publication) {
+        if (!publication) {gi 
             return res.status(403).json({ msg: 'You are not authorized to delete this publication' });
         }
 
