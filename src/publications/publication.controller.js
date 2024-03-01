@@ -53,7 +53,7 @@ export const publicationDelete = async (req, res = response) => {
         const updatedPublications = await Publication.updateMany(
             { author: user._id }, 
             { status: false } 
-        );gi
+        );
 
         res.status(200).json({
             msg: 'Publications deleted',
