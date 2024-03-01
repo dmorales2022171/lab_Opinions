@@ -18,19 +18,36 @@ export const userPost = async (req, res) =>{
 
 export const userPut = async(req, res = response)=>{
     const { id } = req.params;
-    const {_id, password, ...resto} = req.body;
+    const { oldPassword, newPassword, ...resto } = req.body;
     
-    if(password){
-        const salt = bcryptjs.genSaltSync();
-        resto.password = bcryptjs.hashSync(password,salt);
+    try {
+        const user = await User.findById(id);
+        
+        if (!user) {
+            return res.status(404).json({ msg: 'User not found' });
+        }
+
+        const validPassword = bcryptjs.compareSync(oldPassword, user.password);
+        
+        if (!validPassword) {
+            return res.status(400).json({ msg: 'Invalid old password' });
+        }
+
+        if (newPassword) {
+            const salt = bcryptjs.genSaltSync();
+            resto.password = bcryptjs.hashSync(newPassword, salt);
+        }
+
+        await User.findByIdAndUpdate(id, resto);
+
+        const updatedUser = await User.findById(id);
+
+        res.status(200).json({
+            msg: 'User updated',
+            user: updatedUser
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ msg: 'Internal Server Error' });
     }
-
-    await User.findByIdAndUpdate(id, resto);
-
-    const user = await User.findOne({_id: id});
-
-    res.status(200).json({
-        msg: 'User updated',
-        user
-    })
 }
