@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "publicationCollections",
-    "dateExported": "2024-03-01T04:37:00.509Z",
+    "dateExported": "2024-03-02T07:44:31.200Z",
     "version": "1.1",
     "folders": [],
     "requests": [
@@ -14,12 +14,12 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2024-02-29T06:04:09.969Z",
-            "modified": "2024-02-29T08:37:23.306Z",
+            "modified": "2024-03-02T05:49:04.375Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n    \"title\": \"titulo1000\",\n    \"category\": \"contenido1000\",\n    \"content\": \"asdaasdasdasdasdasdasd\",\n    \"userName\": \"Jorge Canas\"\n}\n",
+                "raw": "{\n    \"title\": \"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\",\n    \"category\": \"qqqqqqqqqqqqqqqqqqqqqqqqqq\",\n    \"content\": \"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\",\n    \"userName\": \"comentario\"\n}\n",
                 "form": []
             },
             "tests": []
@@ -33,14 +33,9 @@
             "method": "PUT",
             "sortNum": 20000,
             "created": "2024-02-29T07:48:37.788Z",
-            "modified": "2024-02-29T07:55:40.857Z",
+            "modified": "2024-03-01T05:29:50.380Z",
             "headers": [],
             "params": [],
-            "body": {
-                "type": "json",
-                "raw": "{\n  \"title\": \"prueba del put\",\n  \"category\": \"informatica\",\n  \"content\": \"comprobando si funciona\"\n}",
-                "form": []
-            },
             "tests": []
         },
         {
@@ -48,12 +43,17 @@
             "colId": "02f1df8a-855e-4023-a533-00746ebc5cad",
             "containerId": "",
             "name": "publicationDelete",
-            "url": "http://localhost:8080/opinionApi/v1/publications/Jorge Canas",
+            "url": "http://localhost:8080/opinionApi/v1/publications/65e16688b8eb44f2fd097814",
             "method": "DELETE",
             "sortNum": 30000,
             "created": "2024-02-29T08:37:46.308Z",
-            "modified": "2024-02-29T08:58:03.035Z",
-            "headers": [],
+            "modified": "2024-03-01T06:56:50.456Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWUxN2IxZDI0ZjNmZTYxMGQ5NDI2NzkiLCJpYXQiOjE3MDkyNzYwMTMsImV4cCI6MTcwOTI3OTYxM30.79HWQdTmo_TPOhwhndGIpOf7HsmIA2yUCBOVBL_mNfI"
+                }
+            ],
             "params": [],
             "tests": []
         }
