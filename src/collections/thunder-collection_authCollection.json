@@ -1,20 +1,20 @@
 {
     "client": "Thunder Client",
     "collectionName": "authCollection",
-    "dateExported": "2024-03-02T07:44:24.464Z",
+    "dateExported": "2024-03-03T18:45:28.871Z",
     "version": "1.1",
     "folders": [],
     "requests": [
         {
-            "_id": "81838c80-c09c-42ab-9837-a8c0690215e3",
-            "colId": "6ca30462-dc54-4be7-b9ac-816e149bc9ad",
+            "_id": "bc9cbe00-6786-4597-8c93-0e6e72edb1b9",
+            "colId": "47c44e41-3772-4e61-b29b-3dfe97311577",
             "containerId": "",
             "name": "login",
             "url": "http://localhost:8080/opinionApi/v1/auth/login",
             "method": "POST",
             "sortNum": 10000,
-            "created": "2024-03-01T03:46:21.868Z",
-            "modified": "2024-03-02T05:48:24.544Z",
+            "created": "2024-03-03T18:02:10.561Z",
+            "modified": "2024-03-03T18:02:10.561Z",
             "headers": [],
             "params": [],
             "body": {

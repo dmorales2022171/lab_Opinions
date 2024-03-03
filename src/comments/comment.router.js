@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { commentDelete, commentPost, commentPut } from "./comment.controller.js";
+import { commentDelete, commentGet, commentPost, commentPut } from "./comment.controller.js";
 import { validateFilds } from '../middlewares/validate-filds.js'
 import { validateJWT } from '../middlewares/validate-jwt.js';
 import { existCommentById } from "../helpers/db-validators.js";
@@ -37,6 +37,15 @@ router.delete(
     ],
     commentDelete
 );
+
+router.get(
+    "/",
+    [
+        validateJWT,
+    ],
+    commentGet
+)
+
 
 
 

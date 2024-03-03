@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { publicationDelete, publicationPost, publicationPut } from "../publications/publication.controller.js";
+import { publicationDelete, publicationGet, publicationPost, publicationPut } from "../publications/publication.controller.js";
 import { validateFilds } from "../middlewares/validate-filds.js";
 import { existPublicationById } from "../helpers/db-validators.js";
 import { validateJWT } from "../middlewares/validate-jwt.js";
@@ -40,5 +40,13 @@ router.delete(
     ],
     publicationDelete
 );
+
+router.get(
+    '/',
+    [
+        validateJWT
+    ],
+    publicationGet
+)
 
 export default router;

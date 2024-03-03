@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { check } from "express-validator";
 import {
+    userGet,
     userPost, 
     userPut
 } from "./user.controller.js";
@@ -39,6 +40,10 @@ router.put(
     userPut
 )
 
+router.get(
+    '/',
+    userGet
+)
 
 
 export default router;

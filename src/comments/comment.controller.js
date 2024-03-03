@@ -3,6 +3,7 @@
 import User from '../users/user.model.js';
 import Publication from '../publications/publication.model.js';
 import Comment from '../comments/comment.model.js';
+import { request, response } from 'express';
 
 export const commentPost = async (req, res) => {
     const { content, publicationName, userName } = req.body;
@@ -80,4 +81,23 @@ export const commentDelete = async (req, res = response) => {
         comment
     });
 
+}
+
+export const commentGet = async(req = request, res = response) => {
+    const {limit, from} = req.body;
+    const query = {status: true};
+
+    const [total, comments] = await Promise.all([
+        Comment.countDocuments(query),
+        Comment.find(query)
+        .populate('author', 'userName')
+        .populate('publication', 'title')
+        .skip(Number(from))
+        .limit(Number(limit))
+    ]);
+
+    res.status(200).json({
+        total, 
+        comments
+    })
 }

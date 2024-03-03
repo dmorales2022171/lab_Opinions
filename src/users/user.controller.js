@@ -51,3 +51,20 @@ export const userPut = async(req, res = response)=>{
         res.status(500).json({ msg: 'Internal Server Error' });
     }
 }
+
+export const userGet = async (req= request, res = response) => {
+    const {limit, from} = req.body;
+    const query = {status: true}
+
+    const [total, users] = await Promise.all([
+        User.countDocuments(query),
+        User.find(query)
+        .skip(Number(from))
+        .limit(Number(limit))
+    ]);
+
+    res.status(200).json({
+        total,
+        users
+    })
+}
