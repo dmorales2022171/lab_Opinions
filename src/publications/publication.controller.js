@@ -54,7 +54,7 @@ export const publicationDelete = async (req, res = response) => {
             { new: true }
         );
 
-        if (!publication) {gi 
+        if (!publication) {
             return res.status(403).json({ msg: 'You are not authorized to delete this publication' });
         }
 
