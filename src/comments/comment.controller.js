@@ -1,44 +1,38 @@
 'use strict';
 
-import User from '../users/user.model.js';
 import Publication from '../publications/publication.model.js';
 import Comment from '../comments/comment.model.js';
 import { request, response } from 'express';
 
 export const commentPost = async (req, res) => {
-    const { content, publicationName, userName } = req.body;
+    const { content, publicationName } = req.body;
 
-    const user = await User.findOne({ userName })
+    try {
+        const publication = await Publication.findOne({ title: publicationName });
 
-    if (!user) {
-        return res.status(404).json({
-            msg: "User not found"
+        if (!publication) {
+            return res.status(404).json({
+                msg: "Publicación no encontrada"
+            });
+        }
+
+        const comment = new Comment({
+            content,
+            publication: publication._id
         });
-    }
 
-    const publication = await Publication.findOne({ title: publicationName })
+        await comment.save();
 
-    if (!publication) {
-        return res.status(404).json({
-            msg: "Publication not found"
+        res.status(201).json({
+            msg: "Comentario creado",
+            comment,
+            publication: publication.title
         });
+    } catch (error) {
+        console.error("Error creando comentario:", error);
+        res.status(500).json({ msg: "Error del servidor" });
     }
-
-    const comment = new Comment({
-        content,
-        author: user._id,
-        publication: publication._id
-    });
-
-    await comment.save();
-
-    res.status(201).json({
-        msg: "Comment created",
-        comment,
-        author: user.userName,
-        publication: publication.title
-    });
-}
+};
 
 export const commentPut = async (req, res) => {
     const { id } = req.params;
@@ -90,7 +84,6 @@ export const commentGet = async(req = request, res = response) => {
     const [total, comments] = await Promise.all([
         Comment.countDocuments(query),
         Comment.find(query)
-        .populate('author', 'userName')
         .populate('publication', 'title')
         .skip(Number(from))
         .limit(Number(limit))

@@ -2,7 +2,6 @@ import { Router } from "express";
 import { check } from "express-validator";
 import { commentDelete, commentGet, commentPost, commentPut } from "./comment.controller.js";
 import { validateFilds } from '../middlewares/validate-filds.js'
-import { validateJWT } from '../middlewares/validate-jwt.js';
 import { existCommentById } from "../helpers/db-validators.js";
 
 const router = Router();
@@ -10,7 +9,6 @@ const router = Router();
 router.post(
     "/",
     [
-        validateJWT,
         check("content", "content is required").not().isEmpty(),
         validateFilds
     ],
@@ -20,7 +18,6 @@ router.post(
 router.put(
     "/:id",
     [
-        validateJWT,
         check("content", "content is required").not().isEmpty(),
         validateFilds
     ],
@@ -30,7 +27,6 @@ router.put(
 router.delete(
     '/:id',
     [
-        validateJWT,
         check("id", "the id is not valid").isMongoId(),
         check("id").custom(existCommentById),
         validateFilds
@@ -40,9 +36,6 @@ router.delete(
 
 router.get(
     "/",
-    [
-        validateJWT,
-    ],
     commentGet
 )
 

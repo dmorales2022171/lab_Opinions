@@ -5,11 +5,7 @@ const commentSchema = new mongoose.Schema({
         type: String,
         required: [true, "content is required"]
     },
-    author: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    },
+
     publication:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Publication',

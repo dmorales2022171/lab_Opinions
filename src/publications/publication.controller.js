@@ -1,31 +1,14 @@
 import { request, response } from 'express';
-import User from '../users/user.model.js';
 import Publication from './publication.model.js';
 
 export const publicationPost = async (req, res) => {
-    const data = req.body;
+    const {title, content} = req.body
 
-    const user = await User.findOne({ userName: data.userName });
-
-    if (!user) {
-        return res.status(404).send({
-            message: "User does not exist"
-        });
-    }
-
-
-    const publication = new Publication({
-        ...data,
-        author: user._id,
-        userName: user.userName,
-    });
-
+    const publication = new Publication({title, content});
     await publication.save();
 
     res.status(200).json({
         publication,
-        userName: user.userName,
-        mail: user.mail
     });
 }
 
@@ -72,7 +55,6 @@ export const publicationGet = async(req = request, res = response) => {
     const [total, publications] = await Promise.all([
         Publication.countDocuments(query),
         Publication.find(query)
-        .populate('author', 'userName')
         .skip(Number(from))
         .limit(Number(limit))
     ]);
