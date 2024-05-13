@@ -20,9 +20,9 @@ export const dbConnection = async () => {
             const count = await Publication.countDocuments();
             if (count === 0) {
                 const defaultPublications = [
-                    { title: 'Practica supervisada', content: 'Content of first publication' },
-                    { title: 'Second Publication', content: 'Content of second publication' },
-                    { title: 'Third Publication', content: 'Content of third publication' }
+                    { title: 'Practica supervisada', content: 'Sistema adopcion de mascotas: Api rest el cual tiene como principal el poder adoptar mascotas' },
+                    { title: 'Taller III', content: 'Getor de supermercado: Api rest que tiene como funcionalidesdes basicas de un supermercado' },
+                    { title: 'Tecnologia III', content: 'Contenido: Aprendimos acerca de diferentes tecnologias web' }
                 ];
 
                 for (const publicationData of defaultPublications) {

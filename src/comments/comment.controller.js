@@ -5,10 +5,10 @@ import Comment from '../comments/comment.model.js';
 import { request, response } from 'express';
 
 export const commentPost = async (req, res) => {
-    const { content, publicationName } = req.body;
+    const { content, publicationId } = req.body; 
 
     try {
-        const publication = await Publication.findOne({ title: publicationName });
+        const publication = await Publication.findById(publicationId); 
 
         if (!publication) {
             return res.status(404).json({
@@ -33,6 +33,7 @@ export const commentPost = async (req, res) => {
         res.status(500).json({ msg: "Error del servidor" });
     }
 };
+
 
 export const commentPut = async (req, res) => {
     const { id } = req.params;
