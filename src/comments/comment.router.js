@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { commentDelete, commentGet, commentPost, commentPut } from "./comment.controller.js";
+import { commentById, commentByPublication, commentDelete, commentGet, commentPost, commentPut } from "./comment.controller.js";
 import { validateFilds } from '../middlewares/validate-filds.js'
 import { existCommentById } from "../helpers/db-validators.js";
 
@@ -39,7 +39,12 @@ router.get(
     commentGet
 )
 
-
-
+router.get(
+    "/publication/:publicationId",
+    [
+        check("publicationId", "Not a valid publication ID").isMongoId(),
+    ],
+    commentByPublication
+);
 
 export default router;

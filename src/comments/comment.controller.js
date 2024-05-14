@@ -5,7 +5,7 @@ import Comment from '../comments/comment.model.js';
 import { request, response } from 'express';
 
 export const commentPost = async (req, res) => {
-    const { content, publicationId } = req.body; 
+    const { author, content, publicationId } = req.body; 
 
     try {
         const publication = await Publication.findById(publicationId); 
@@ -17,6 +17,7 @@ export const commentPost = async (req, res) => {
         }
 
         const comment = new Comment({
+            author,
             content,
             publication: publication._id
         });
@@ -30,6 +31,41 @@ export const commentPost = async (req, res) => {
         });
     } catch (error) {
         console.error("Error creando comentario:", error);
+        res.status(500).json({ msg: "Error del servidor" });
+    }
+};
+
+
+export const commentById = async (req, res) => {
+    const {id} = req.params;
+
+    const comment = await Comment.findOne({_id: id})
+
+    res.status(200).json({
+        comment
+    })
+}
+
+export const commentByPublication = async (req, res) => {
+    const { publicationId } = req.params;
+
+    try {
+        const publication = await Publication.findById(publicationId);
+
+        if (!publication) {
+            return res.status(404).json({
+                msg: "Publicación no encontrada"
+            });
+        }
+
+        const comments = await Comment.find({ publication: publication._id });
+
+        res.status(200).json({
+            publication: publication.title,
+            comments
+        });
+    } catch (error) {
+        console.error("Error obteniendo comentarios por publicación:", error);
         res.status(500).json({ msg: "Error del servidor" });
     }
 };
